@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBApp.Api", "FBApp.Api\FBApp.Api.csproj", "{AD845DB4-57BD-4E2F-BC07-48E6295A9089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBApp.Data", "FBApp.Data\FBApp.Data.csproj", "{CD9B430A-D5AA-4736-BE38-69FED0AEA7F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBApp.Models", "FBApp.Models\FBApp.Models.csproj", "{42190D1E-3853-41ED-84EB-F52F4694EA0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD845DB4-57BD-4E2F-BC07-48E6295A9089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD845DB4-57BD-4E2F-BC07-48E6295A9089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD845DB4-57BD-4E2F-BC07-48E6295A9089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD845DB4-57BD-4E2F-BC07-48E6295A9089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD9B430A-D5AA-4736-BE38-69FED0AEA7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9B430A-D5AA-4736-BE38-69FED0AEA7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9B430A-D5AA-4736-BE38-69FED0AEA7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9B430A-D5AA-4736-BE38-69FED0AEA7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42190D1E-3853-41ED-84EB-F52F4694EA0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42190D1E-3853-41ED-84EB-F52F4694EA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42190D1E-3853-41ED-84EB-F52F4694EA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42190D1E-3853-41ED-84EB-F52F4694EA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,80 @@
+﻿<div class="col-sm-8 col-xs-12">
+    <div ng-repeat="ad in ads.ads">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span ng-bind="ad.title"></span>
+                    <span class="pull-right" ng-bind="ad.date| date:'dd/MMM/yyyy'"></span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-3 panel-image">
+                    <img ng-src="{{ad.imageDataUrl}}" src="../../Content/images/nophoto.jpg" class="img-responsive" />
+                </div>
+                <div class="col-sm-9">
+                    <div class="well" ng-bind="ad.text"></div>
+                    <div class="row">
+                        <div class="col-sm-2">Name: </div>
+                        <div class="col-sm-10" ng-bind="ad.ownerName"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">Email: </div>
+                        <div class="col-sm-10">
+                            <a ng-href="mailto: {{ad.ownerEmail}}" ng-bind="ad.ownerEmail"></a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">Phone: </div>
+                        <div class="col-sm-10" ng-bind="ad.ownerPhone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well margin-top-15" ng-show="!ads.numItems">
+        Sorry, there are no advertisements matching these criterias...
+    </div>
+
+    <!--    Pagination-->
+    <div class="row text-center" ng-show="ads.numItems > itemsPerPage">
+        <pagination boundary-links="true" total-items="ads.numItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-click="loadPage()"></pagination>
+    </div>
+</div>
+
+<div class="col-sm-2 col-xs-12">
+    <ul class="nav nav-pills nav-stacked margin-bottom-15">
+        <li>
+            <h4>Categories</h4>
+        </li>
+        <li ng-class="{'active': !pageSettings.categoryId}"
+            ng-click="filterCategory('')">
+            <a href>All</a>
+        </li>
+        <li ng-repeat="category in allCategories"
+            ng-class="{'active': pageSettings.categoryId==category.id}"
+            ng-click="filterCategory(category.id)">
+            <a href>
+                {{category.name}}
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="col-sm-2 col-xs-12">
+    <div data-example-id="vertical-button-group">
+        <ul class="nav nav-pills nav-stacked margin-bottom-15">
+            <li>
+                <h4>Towns</h4>
+            </li>
+            <li ng-class="{'active': !pageSettings.townId}"
+                ng-click="filterTown('')">
+                <a href>All</a>
+            </li>
+            <li ng-repeat="town in allTowns"
+                ng-class="{'active': pageSettings.townId==town.id}"
+                ng-click="filterTown(town.id)">
+                <a href>
+                    {{town.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

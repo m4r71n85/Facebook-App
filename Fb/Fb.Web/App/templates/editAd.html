@@ -1,0 +1,71 @@
+﻿<form name="editForm">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Edit Ad</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- Title input-->
+                    <div class="form-group">
+                        <label class="control-label" for="title">Title: <span class="text-danger">*</span></label>
+                        <input ng-model="ad.title" id="title" name="title" placeholder="Title" class="form-control input-md" ng-required="true" type="text">
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="control-label" for="text">Text: <span class="text-danger">*</span></label>
+                        <textarea ng-model="ad.text" id="text" name="text" placeholder="Text" class="form-control" ng-required="true"></textarea>
+                    </div>
+
+                    <!-- Category input-->
+                    <div class="form-group">
+                        <label class="control-label" for="image">Category: </label>
+                        <select id="category" name="category" class="form-control"
+                                ng-options="category.id as category.name for category in allCategories"
+                                ng-model="ad.categoryId">
+                            <option value="">Choose Category...</option>
+                        </select>
+                    </div>
+
+                    <!-- Category input-->
+                    <div class="form-group">
+                        <label class="control-label" for="image">Town: </label>
+                        <select id="category" name="town" class="form-control"
+                                ng-options="town.id as town.name for town in allTowns"
+                                ng-model="ad.townId">
+                            <option value="">Choose Town...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <!-- Image input-->
+                    <div class="form-group">
+                        <img src="../../Content/images/nophoto.jpg" class="img-responsive" id="image-preview" style="max-width: 300px;"
+                             ng-src="{{ad.imageDataUrl}}" />
+                        <label for="changeImage">
+                            Change image
+                            <input type="checkbox" ng-model="ad.changeImage" id="changeImage" class="form-horizontal" />
+                        </label>
+                        <input type="file" id="image" name="image" placeholder="Image" class="form-control input-md"
+                               ng-model="ad.image"
+                               onchange="angular.element(this).scope().fileSelected(this)" />
+                        <span class="text-danger" ng-show="fileTypeError">File type not supported!</span>
+                        <button ng-click="deleteImage()" class="btn btn-warning margin-top-15" ng-show="ad.imageDataUrl!=null">Delete image</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-5 col-xs-12 margin-top-15">
+                        <!-- Button -->
+                        <button ng-click="editForm.$valid && edit()" id="publish" name="publish" class="btn btn-primary">Edit</button>
+                        <div class="pull-right">
+                            <a ui-sref="userAds" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,97 @@
+﻿<div class="col-sm-6">
+    <form name="userProfileForm">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Profile</h3>
+            </div>
+            <div class="panel-body">
+
+                <!-- New Username label-->
+                <div class="form-group">
+                    <label class="control-label">Username:</label>
+                    <div ng-bind="user.username" class="well well-sm"></div>
+                </div>
+
+                <!-- Name input-->
+                <div class="form-group">
+                    <label class="control-label" for="name">Name: <span class="text-danger">*</span></label>
+                    <input ng-model="user.name" id="name" name="name" placeholder="Name" class="form-control input-md" ng-required="true" type="text" />
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="text">Email: <span class="text-danger">*</span></label>
+                    <input ng-model="user.email" id="email" name="email" placeholder="Email" class="form-control input-md" ng-required="true" type="email" />
+                </div>
+
+                <!-- Phone input-->
+                <div class="form-group">
+                    <label class="control-label" for="text">Phone: <span class="text-danger">*</span></label>
+                    <input ng-model="user.phoneNumber" id="email" name="phone" placeholder="Phone" class="form-control input-md" ng-required="true" type="text" />
+                </div>
+
+                <!-- Category input-->
+                <div class="form-group">
+                    <label class="control-label" for="image">Town: </label>
+                    <select id="category" name="town" class="form-control"
+                            ng-options="town.id as town.name for town in allTowns"
+                            ng-model="user.townId">
+                        <option value="">Choose Town...</option>
+                    </select>
+                </div>
+
+                <!-- Is Admin checkbox-->
+                <div class="form-group">
+                    <label class="control-label" for="isAdmin">Is Admin </label>
+                    <input id="isAdmin" type="checkbox" ng-model="user.isAdmin" />
+                    </select>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <button ng-click="userProfileForm.$valid && userProfileForm.$dirty && updateProfile()" class="btn btn-primary" name="publish" id="publish">Update</button>
+                    <div class="pull-right">
+                        <a class="btn btn-default" ui-sref="adminUsers" href="/user/ads">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="col-sm-6">
+    <form name="userPasswordForm">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Change Password</h3>
+            </div>
+            <div class="panel-body">
+
+                <!-- New Username label-->
+                <div class="form-group">
+                    <label class="control-label">Username:</label>
+                    <div ng-bind="user.username" class="well well-sm"></div>
+                </div>
+
+                <!-- New password input-->
+                <div class="form-group">
+                    <label class="control-label" for="newPassword">New Password: <span class="text-danger">*</span></label>
+                    <input ng-model="userPassword.newPassword" id="newPassword" name="newPassword" placeholder="New Password" class="form-control input-md" ng-required="true" type="password" />
+                </div>
+
+                <!-- Confirm password input-->
+                <div class="form-group">
+                    <label class="control-label" for="confirmPassword">Confirm Password: <span class="text-danger">*</span></label>
+                    <input ng-model="userPassword.confirmPassword" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control input-md" ng-required="true" type="password" />
+                </div>
+
+                <!-- Button -->
+                <div class="form-group marg">
+                    <button ng-click="userPasswordForm.$valid && userPasswordForm.$dirty && updatePassword()" class="btn btn-primary" name="publish" id="publish">Change Password</button>
+                    <div class="pull-right">
+                        <a class="btn btn-default" ui-sref="adminUsers" href="/user/ads">Cancel</a>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>

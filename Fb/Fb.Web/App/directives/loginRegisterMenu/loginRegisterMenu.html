@@ -1,0 +1,9 @@
+﻿<ul class="nav nav-pills nav-stacked margin-bottom-15" ng-show="!isLoggedIn">
+    <li>To publish a new ad, please login.</li>
+    <li ng-repeat="item in loginRegisterMenuItems"
+        ng-class="{active: $state.includes(item.sref)}">
+        <a ui-sref="{{item.sref}}">
+            {{item.title}}
+        </a>
+    </li>
+</ul>

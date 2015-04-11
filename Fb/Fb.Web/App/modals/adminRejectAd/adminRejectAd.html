@@ -1,0 +1,59 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">×</button>
+        <h4 class="modal-title">Confirm rejection</h4>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to reject this advertisement: </p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span ng-bind="ad.title"></span>
+                    <span class="pull-right" ng-bind="ad.date| date:'dd/MMM/yyyy'"></span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-4 panel-image">
+                    <img ng-src="{{ad.imageDataUrl}}" src="../../Content/images/nophoto.jpg" class="img-responsive" />
+                    <div class="margin-top-15">
+                        Status:
+                        <div class="well" ng-bind="ad.status|adStatus"></div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="well" ng-bind="ad.text"></div>
+                    <div class="row">
+                        <div class="col-sm-3">Username: </div>
+                        <div class="col-sm-9" ng-bind="ad.ownerUsername"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">Name: </div>
+                        <div class="col-sm-9" ng-bind="ad.ownerName"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">Email: </div>
+                        <div class="col-sm-9">
+                            <a ng-href="mailto: {{ad.ownerEmail}}" ng-bind="ad.ownerEmail"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">Phone: </div>
+                        <div class="col-sm-9" ng-bind="ad.ownerPhone"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">Category: </div>
+                        <div class="col-sm-9" ng-bind="ad.categoryName | emptyToDash"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">Town: </div>
+                        <div class="col-sm-9" ng-bind="ad.townName | emptyToDash"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="ok()"  type="button" class="btn btn-primary">Ok</button>
+        <button ng-click="cancel()" type="button" class="btn btn-default">Cancel</button>
+    </div>
+</div>

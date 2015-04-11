@@ -8,7 +8,7 @@
     {
         public BaseApiController(IAdsData data)
         {
-            this.Data = data;
+            Data = data;
         }
 
         protected IAdsData Data { get; private set; }
@@ -17,7 +17,7 @@
         {
             if (result == null)
             {
-                return this.InternalServerError();
+                return InternalServerError();
             }
 
             if (!result.Succeeded)
@@ -26,17 +26,17 @@
                 {
                     foreach (string error in result.Errors)
                     {
-                        this.ModelState.AddModelError(string.Empty, error);
+                        ModelState.AddModelError(string.Empty, error);
                     }
                 }
 
                 if (ModelState.IsValid)
                 {
                     // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return this.BadRequest();
+                    return BadRequest();
                 }
 
-                return this.BadRequest(this.ModelState);
+                return BadRequest(ModelState);
             }
 
             return null;

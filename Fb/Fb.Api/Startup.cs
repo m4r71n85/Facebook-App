@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 
-[assembly: OwinStartup(typeof(Ads.Web.Startup))]
+[assembly: OwinStartup(typeof(Fb.Api.Startup))]
 
-namespace Ads.Web
+namespace Fb.Api
 {
     using System;
     using System.Collections.Generic;

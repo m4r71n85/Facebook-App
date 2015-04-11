@@ -1,7 +1,9 @@
 ﻿namespace Fb.Api
 {
+    using System.Net.Http.Formatting;
     using System.Web.Http;
     using Microsoft.Owin.Security.OAuth;
+    using Newtonsoft.Json.Serialization;
 
     public static class WebApiConfig
     {
@@ -19,6 +21,15 @@
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
+            //remove xml
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+        }
+
+        public static void UseJsonFormatter()
+        {
+            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
         }
     }
 }

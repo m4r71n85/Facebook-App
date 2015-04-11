@@ -41,7 +41,7 @@ app.config([
             title: 'Register',
             url: '/register',
             templateUrl: 'App/templates/register.html',
-            controller: 'registerController',
+            controller: 'registerController'
         });
 
         $stateProvider.state('home', {

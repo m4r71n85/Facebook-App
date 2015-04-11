@@ -13,18 +13,10 @@ app.directive('navigationMenu',
                 $scope.isAdmin = authSessionHelper.isAdmin();
 
                 function updateNavigation() {
-                    if ($scope.isLoggedIn && $scope.isAdmin) {
+                    if ($scope.isLoggedIn){
                         $scope.navigationMenuItems = [
-                            { title: "Ads", sref: "adminHome", authenticated: true },
-                            { title: "Users", sref: "adminUsers", authenticated: true },
-                            { title: "Categories", sref: "adminCategories", authenticated: true },
-                            { title: "Town", sref: "adminTowns", authenticated: true }
-                        ];
-                    } else {
-                        $scope.navigationMenuItems = [
-                            { title: "Home", sref: "home" },
-                            { title: "My Ads", sref: "userAds", authenticated: true },
-                            { title: "Publish New Ad", sref: "publish", authenticated: true },
+                            { title: "Home", sref: "home", authenticated: true },
+                            { title: "Find Friends", sref: "#", authenticated: true },
                             { title: "Edit Profile", sref: "userProfile", authenticated: true }
                         ];
                     }

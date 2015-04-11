@@ -12,9 +12,9 @@ app.controller('homeController',
         $scope.loadPage = function () {
             adsFilterHelper.setPage($scope.currentPage);
             adsService.getAds().then(
-                function (data) {
+                function(data) {
                     $scope.ads = data;
-                })
+                });
         }
 
         $scope.filterCategory = function (categoryId) {

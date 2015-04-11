@@ -110,7 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -118,7 +117,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -126,16 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
-    <Content Include="App\controllers\admin\adminTownsController.js" />
-    <Content Include="App\controllers\admin\adminCategoriesController.js" />
-    <Content Include="App\controllers\admin\adminCreateTownController .js" />
-    <Content Include="App\controllers\admin\adminCreateCategoryController.js" />
-    <Content Include="App\controllers\admin\adminEditTownController.js" />
-    <Content Include="App\controllers\admin\adminEditCategoryController.js" />
-    <Content Include="App\controllers\admin\adminEditUserController.js" />
-    <Content Include="App\controllers\admin\adminHomeController.js" />
-    <Content Include="App\controllers\admin\adminEditAdController.js" />
-    <Content Include="App\controllers\admin\adminUsersController.js" />
     <Content Include="App\controllers\editAdController.js" />
     <Content Include="App\controllers\homeController.js" />
     <Content Include="App\controllers\loginController.js" />

@@ -1,11 +1,9 @@
-﻿using Fb.Api.Providers;
-
-namespace Fb.Api
+﻿namespace Ads.Web
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Fb.Models;
+    using Fb.Api.Providers;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin;
@@ -13,8 +11,6 @@ namespace Fb.Api
     using Microsoft.Owin.Security.OAuth;
 
     using Owin;
-
-    using Fb.Api.Providers;
 
     public partial class Startup
     {

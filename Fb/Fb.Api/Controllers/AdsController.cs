@@ -3,10 +3,10 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Web.Http;
-    using Fb.Data;
+    using Data;
     using Fb.Models;
-    using Fb.Api.Models.Ads;
-    using Fb.Api.Properties;
+    using Models.Ads;
+    using Properties;
 
     [AllowAnonymous]
     public class AdsController : BaseApiController

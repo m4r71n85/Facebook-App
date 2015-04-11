@@ -1,7 +1,7 @@
 ﻿namespace Fb.Api.Controllers
 {
     using System.Web.Http;
-    using Fb.Data;
+    using Data;
     using Microsoft.AspNet.Identity;
 
     public class BaseApiController : ApiController

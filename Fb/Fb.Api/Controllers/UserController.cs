@@ -5,19 +5,20 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Net.Http;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
-    using Fb.Api.Properties;
+    using Ads.Web;
+    using Data;
+    using Fb.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
-    using Fb.Data;
-    using Fb.Models;
-    using Fb.Api.Models.Users;
-    using System.Text;
+    using Models.Users;
+    using Properties;
 
     [Authorize]
     [RoutePrefix("api/user")]
@@ -486,7 +487,7 @@
                 return this.BadRequest("Edit profile for user 'admin' is not allowed!");
             }
 
-            var hasEmailTaken = this.Data.Users.All().Where(x => x.Id != currentUserId).Any(x => x.Email == model.Email);
+            var hasEmailTaken = this.Data.Users.All().Any(x => x.Email == model.Email);
             if (hasEmailTaken)
             {
                 return this.BadRequest("Invalid email. The email is already taken!");

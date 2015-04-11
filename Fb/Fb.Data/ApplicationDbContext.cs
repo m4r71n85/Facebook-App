@@ -13,7 +13,11 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
+        public IDbSet<Advertisement> Advertisements { get; set; }
+
         public IDbSet<Town> Towns { get; set; }
+
+        public IDbSet<Category> Categories { get; set; }
 
         public static ApplicationDbContext Create()
         {

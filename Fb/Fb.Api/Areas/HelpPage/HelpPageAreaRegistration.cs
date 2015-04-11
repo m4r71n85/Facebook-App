@@ -2,6 +2,7 @@ namespace Fb.Api.Areas.HelpPage
 {
     using System.Web.Http;
     using System.Web.Mvc;
+    using App_Start;
 
     public class HelpPageAreaRegistration : AreaRegistration
     {

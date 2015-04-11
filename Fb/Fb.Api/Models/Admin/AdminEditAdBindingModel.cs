@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using global::Fb.Models;
+    using Fb.Models;
 
     public class AdminEditAdBindingModel
     {

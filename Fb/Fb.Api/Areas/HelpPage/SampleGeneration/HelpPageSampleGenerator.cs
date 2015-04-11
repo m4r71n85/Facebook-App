@@ -1,4 +1,4 @@
-namespace Fb.Api.Areas.HelpPage
+namespace Fb.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,6 @@ namespace Fb.Api.Areas.HelpPage
     using System.Net.Http.Headers;
     using System.Web.Http.Description;
     using System.Xml.Linq;
-
     using Newtonsoft.Json;
 
     /// <summary>

@@ -1,14 +1,12 @@
-namespace Fb.Data.Migrations
+﻿namespace Fb.Data.Migrations
 {
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-
-    using Fb.Models;
+    using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {

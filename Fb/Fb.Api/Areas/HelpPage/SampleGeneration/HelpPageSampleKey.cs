@@ -1,4 +1,4 @@
-namespace Fb.Api.Areas.HelpPage
+namespace Fb.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
     using System.Collections.Generic;

@@ -13,9 +13,9 @@ namespace Fb.Api.Areas.HelpPage
     using System.Web.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Description;
-
-    using Fb.Api.Areas.HelpPage.ModelDescriptions;
-    using Fb.Api.Areas.HelpPage.Models;
+    using ModelDescriptions;
+    using Models;
+    using SampleGeneration;
 
     public static class HelpPageConfigurationExtensions
     {

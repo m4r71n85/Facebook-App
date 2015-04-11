@@ -3,8 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
-
-    using Fb.Data;
+    using Data;
     using Fb.Models;
 
     public class TownsController : BaseApiController

@@ -1,11 +1,8 @@
-using Fb.Api.Areas.HelpPage.ModelDescriptions;
-
 namespace Fb.Api.Areas.HelpPage.Controllers
 {
     using System.Web.Http;
     using System.Web.Mvc;
-
-    using Fb.Api.Areas.HelpPage.ModelDescriptions;
+    using ModelDescriptions;
 
     /// <summary>
     /// The controller that will handle requests for the help page.

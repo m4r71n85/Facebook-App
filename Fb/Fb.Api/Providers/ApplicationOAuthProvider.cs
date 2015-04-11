@@ -3,14 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
+    using Data;
+    using Fb.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
-
-    using Fb.Data;
-    using Fb.Models;
 
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {

@@ -1,5 +1,3 @@
-using Fb.Api.Areas.HelpPage.ModelDescriptions;
-
 namespace Fb.Api.Areas.HelpPage
 {
     using System;
@@ -9,8 +7,7 @@ namespace Fb.Api.Areas.HelpPage
     using System.Web.Http.Controllers;
     using System.Web.Http.Description;
     using System.Xml.XPath;
-
-    using Fb.Api.Areas.HelpPage.ModelDescriptions;
+    using ModelDescriptions;
 
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

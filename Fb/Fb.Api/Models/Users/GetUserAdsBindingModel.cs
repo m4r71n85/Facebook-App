@@ -1,7 +1,7 @@
 ﻿namespace Fb.Api.Models.Users
 {
     using System.ComponentModel.DataAnnotations;
-    using global::Fb.Models;
+    using Fb.Models;
 
     public class GetUserAdsBindingModel
     {

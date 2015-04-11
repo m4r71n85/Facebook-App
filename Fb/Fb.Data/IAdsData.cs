@@ -1,7 +1,7 @@
 ﻿namespace Fb.Data
 {
-    using Fb.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     public interface IAdsData
     {

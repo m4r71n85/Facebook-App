@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-
-    using Fb.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     public class AdsData : IAdsData
     {

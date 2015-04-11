@@ -5,13 +5,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using Common;
+    using Data;
     using Fb.Models;
-    using Fb.Api.Models.Admin;
-    using Fb.Api.Properties;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Fb.Data;
-    using Ads.Common;
+    using Models.Admin;
+    using Properties;
 
     [Authorize(Roles = "Administrator")]
     [RoutePrefix("api/admin")]
@@ -431,43 +431,6 @@
             );
         }
 
-        // GET api/Admin/User/{username}
-        [HttpGet]
-        [Route("User/{username}")]
-        public IHttpActionResult GetUser(string username)
-        {
-
-            // Select all users along with their roles
-            var user = this.Data.Users.All().Include(u => u.Roles).Include(u => u.Town).Where(u=>u.UserName == username).FirstOrDefault();
-            if (user != null) { 
-            // Select the admin role ID
-            var adminRoleId = this.Data.UserRoles.All().First(r => r.Name == "Administrator").Id;
-            // Select the columns to be returned 
-            var usersToReturn = new
-            {
-                id = user.Id,
-                username = user.UserName,
-                name = user.Name,
-                email = user.Email,
-                phoneNumber = user.PhoneNumber,
-                townId = user.TownId,
-                townName = user.TownId != null ? user.Town.Name : null,
-                isAdmin = user.Roles.Any(r => r.RoleId == adminRoleId)
-            };
-
-            return this.Ok(
-                new
-                {
-                    user = usersToReturn
-                }
-            );
-            }
-            else
-            {
-                return this.BadRequest("User doesn't exist!");
-            }
-        }
-
         // PUT api/Admin/SetPassword
         [HttpPut]
         [Route("SetPassword")]
@@ -610,7 +573,7 @@
             var categoriesToReturn = categories.ToList().Select(c => new
             {
                 id = c.Id,
-                name = c.Name
+                username = c.Name
             });
 
             return this.Ok(
@@ -707,20 +670,6 @@
            );
         }
 
-        // Get /api/Admin/Categories/{id}
-        [HttpGet]
-        [Route("Categories/{id:int}")]
-        public IHttpActionResult GetCategory(int id)
-        {
-            var category = this.Data.Categories.All().FirstOrDefault(c => c.Id == id);
-            if (category == null)
-            {
-                return this.BadRequest("Category #" + id + " not found!");
-            }
-
-            return this.Ok(category);
-        }
-
         // GET api/Admin/Towns
         [HttpGet]
         [Route("Towns")]
@@ -786,7 +735,7 @@
             var townsToReturn = towns.ToList().Select(c => new
             {
                 id = c.Id,
-                name = c.Name
+                username = c.Name
             });
 
             return this.Ok(
@@ -880,20 +829,6 @@
                    message = "Town #" + id + " deleted successfully."
                }
            );
-        }
-
-        // Get /api/Admin/Towns/{id}
-        [HttpGet]
-        [Route("Towns/{id:int}")]
-        public IHttpActionResult GetTown(int id)
-        {
-            var town = this.Data.Towns.All().FirstOrDefault(c => c.Id == id);
-            if (town == null)
-            {
-                return this.BadRequest("Town #" + id + " not found!");
-            }
-
-            return this.Ok(town);
         }
         
         protected override void Dispose(bool disposing)

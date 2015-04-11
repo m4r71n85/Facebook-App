@@ -12,7 +12,6 @@ namespace Fb.Api.Models.Users
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 

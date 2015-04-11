@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <link rel="icon" type="image/png" href="~/Content/images/favicon.png" />
+        <meta charset="utf-8" />
+        <title ng-bind="'Ads - ' + title">Facebook - Coursework</title>
+        @Styles.Render("~/bundles/css/site")
+        @RenderSection("styles", false)
+    </head>
+<body role="document" ng-cloak>
+    <div class="container">
+        <toaster-container toaster-options="{'position-class': 'toast-top-full-width'}"></toaster-container>
+        <header-menu></header-menu>
+        <section id="main-section">
+            <h2 ng-bind="title"></h2>
+            @RenderBody()
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2015 by Team "Bogotá", No Rights Reserved</p>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/js/lib")
+    @Scripts.Render("~/bundles/js/spa")
+    @RenderSection("scripts", false)
+</body>
+</html>

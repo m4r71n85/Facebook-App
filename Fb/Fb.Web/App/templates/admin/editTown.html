@@ -1,0 +1,31 @@
+﻿<div class="col-sm-8">
+    <form name="editForm">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Town</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <!-- Name input-->
+                        <div class="form-group">
+                            <label class="control-label" for="name">Town: <span class="text-danger">*</span></label>
+                            <input ng-model="town.name" id="name" name="name" placeholder="Town name" class="form-control input-md" ng-required="true" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-11 col-xs-12 margin-top-15">
+                            <!-- Button -->
+                            <button ng-click="editForm.$valid && edit()" id="publish" name="publish" class="btn btn-primary">Edit</button>
+                            <div class="pull-right">
+                                <a ui-sref="adminTowns" class="btn btn-default">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -272,14 +274,9 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -287,15 +284,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Fb.Common\Fb.Common.csproj">
       <Project>{66158f75-1774-4a77-81db-540ad9f3e5b4}</Project>
-      <Name>Ads.Common</Name>
+      <Name>Fb.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fb.Data\Fb.Data.csproj">
       <Project>{C4F20351-DE3A-4F6D-B20A-E6680CEBE50B}</Project>
-      <Name>Ads.Data</Name>
+      <Name>Fb.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fb.Models\Fb.Models.csproj">
       <Project>{A3E05C27-E8F6-4510-B9C5-7D2DDE3B6AED}</Project>
-      <Name>Ads.Models</Name>
+      <Name>Fb.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -326,6 +323,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

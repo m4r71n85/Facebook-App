@@ -1,0 +1,32 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top" ng-class="{'navbar-yellow' : isAdmin}">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home">Ads Coursework</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="item in headerMenuItems"
+                    ng-class="{active: $state.includes(item.sref)}"
+                    ng-show="!item.authenticated || item.authenticated && isLoggedIn">
+                    <a ui-sref="{{item.sref}}">
+                        {{item.title}}
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
+                <li><a ui-sref="userProfile" ng-bind="username"></a></li>
+                <li><a href ng-click="logout()">Log out</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
+                <li><a ui-sref="login">Login</a></li>
+                <li><a ui-sref="register">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

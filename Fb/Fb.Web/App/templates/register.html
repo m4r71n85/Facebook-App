@@ -1,0 +1,72 @@
+﻿<div class="col-sm-12">
+    <form name="registerForm">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">User Registration</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <!-- Username input-->
+                    <div class="form-group">
+                        <label class="control-label" for="username">Username: <span class="text-danger">*</span></label>
+                        <input ng-model="user.username" placeholder="Username" class="form-control input-md" id="username" ng-required="true" type="text">
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password: <span class="text-danger">*</span></label>
+                        <input ng-model="user.password" placeholder="Password" class="form-control input-md" id="password" ng-required="true" type="password" />
+                    </div>
+
+                    <!-- Confirm Password input-->
+                    <div class="form-group">
+                        <label class="control-label" for="confirm-password">Confirm Password: <span class="text-danger">*</span></label>
+                        <input ng-model="user.confirmPassword" placeholder="Confirm Password" class="form-control input-md" id="confirm-password" ng-required="true" type="password" />
+                    </div>
+
+                    <!-- Email input-->
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email: <span class="text-danger">*</span></label>
+                        <input ng-model="user.email" placeholder="Email" class="form-control input-md" id="email" ng-required="true" type="email" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+
+                    <!-- Name input-->
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name: <span class="text-danger">*</span></label>
+                        <input ng-model="user.name" placeholder="Name" class="form-control input-md" id="name" ng-required="true" type="text" />
+                    </div>
+
+                    <!-- Phone input-->
+                    <div class="form-group">
+                        <label class="control-label" for="phone">Phone: <span class="text-danger">*</span></label>
+                        <input ng-model="user.phone" placeholder="Phone" class="form-control input-md" id="phone" ng-required="true" type="text" />
+                    </div>
+
+                    <!-- Town select-->
+                    <div class="form-group">
+                        <label class="control-label" for="category">Town:</label>
+                        <select id="category" name="town" class="form-control"
+                                ng-options="town.id as town.name for town in allTowns"
+                                ng-model="user.townId">
+                            <option value="">Choose Town...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <!-- Button -->
+                <div class="row">
+                    <div class="col-sm-2 text-center">
+                        <button ng-click="registerForm.$valid && register()" class="btn btn-primary">Register</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <a ui-sref="login" class="btn btn-default">Login here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

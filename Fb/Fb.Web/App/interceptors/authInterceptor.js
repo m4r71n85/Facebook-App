@@ -31,7 +31,7 @@
         var responseError = function (rejection) {
             if (rejection.status === 403 || rejection.status === 401) {
                 $timeout(function(){ 
-                    $location.url('/account/login');
+                    $location.url('/login');
                     toaster.pop('error', '', 'You are not authorized to view this page.');
                 }, 1);
             }

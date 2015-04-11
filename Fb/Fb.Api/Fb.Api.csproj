@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\Admin\AdminTownBindingModel.cs" />
     <Compile Include="Models\Admin\AdminGetTownsBindingModel.cs" />
     <Compile Include="Models\Admin\AdminGetUsersBindingModel.cs" />

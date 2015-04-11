@@ -4,6 +4,7 @@
     using Data;
     using Microsoft.AspNet.Identity;
 
+    [Authorize]
     public class BaseApiController : ApiController
     {
         public BaseApiController(IAdsData data)

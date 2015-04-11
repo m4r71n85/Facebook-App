@@ -28,7 +28,7 @@ app.config([
         //================================================
         // Routes
         //================================================ 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/login');
 
         $stateProvider.state('login', {
             title: 'Login',
@@ -42,12 +42,6 @@ app.config([
             url: '/register',
             templateUrl: 'App/templates/register.html',
             controller: 'registerController',
-            resolve: {
-                allTowns: [
-                    'menuItemsServices', function (menuItemsServices) {
-                        return menuItemsServices.getAllTowns();
-                    }],
-            }
         });
 
         $stateProvider.state('home', {

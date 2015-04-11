@@ -8,7 +8,6 @@
     using Models.Ads;
     using Properties;
 
-    [AllowAnonymous]
     public class AdsController : BaseApiController
     {
         public AdsController()

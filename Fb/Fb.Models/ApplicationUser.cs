@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Data;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
@@ -11,10 +12,12 @@
     public class ApplicationUser : IdentityUser
     {
         private ICollection<Post> _posts;
+        private ICollection<ApplicationUser> _friends;
 
         public ApplicationUser()
         {
             _posts = new HashSet<Post>();
+            _friends = new HashSet<ApplicationUser>();
         }
 
         [Required]
@@ -28,6 +31,12 @@
         {
             get { return _posts; }
             set { _posts = value; }
+        }
+
+        public virtual ICollection<ApplicationUser> Friends
+        {
+            get { return _friends; }
+            set { _friends = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(

@@ -181,7 +181,7 @@
         // GET api/User/Ads
         [HttpGet]
         [Route("Ads")]
-        public IHttpActionResult GetAds([FromUri]GetUserAdsBindingModel model)
+        public IHttpActionResult GetPosts([FromUri]GetUserAdsBindingModel model)
         {
             if (model == null)
             {

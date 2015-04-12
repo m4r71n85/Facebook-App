@@ -8,6 +8,11 @@
     [RoutePrefix("api/friends")]
     public class FriendsController:BaseApiController
     {
+        public FriendsController()
+            : this(new FbData())
+        {
+        }
+
         public FriendsController(IFbData data)
             : base(data)
         {

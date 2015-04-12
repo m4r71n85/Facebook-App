@@ -291,7 +291,6 @@ app.config([
 //================================================ 
 
 app.run(['$rootScope', 'postFilterHelper', function ($rootScope, postFilterHelper) {
-    console.log($rootScope);
     $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams) {
         postFilterHelper.resetSettings();
         $rootScope.title = $rootScope.$state.current.title;

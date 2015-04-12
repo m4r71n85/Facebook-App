@@ -4,17 +4,74 @@
     using System.Web.Http;
     using Data;
     using Microsoft.AspNet.Identity;
+    using Models.Ads;
     using Models.Users;
+    using Properties;
 
+    [RoutePrefix("api/posts")]
     public class PostController : BaseApiController
     {
+        public PostController()
+            : base(new FbData())
+        {
+        }
+
         public PostController(IFbData data)
             : base(data)
         {
         }
 
+
         [HttpGet]
-        [Route("posts/{id:int}")]
+        [Route("all")]
+        public IHttpActionResult GetPosts([FromUri] PostsPageSettingsModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var posts = Data.Posts.All();
+
+            posts = posts.OrderByDescending(ad => ad.Date).ThenBy(ad => ad.Id);
+
+            // Apply paging: find the requested page (by given start page and page size)
+            int pageSize = Settings.Default.DefaultPageSize;
+            if (model.PageSize.HasValue)
+            {
+                pageSize = model.PageSize.Value;
+            }
+            var numItems = posts.Count();
+            var numPages = (numItems + pageSize - 1)/pageSize;
+            if (model.StartPage.HasValue)
+            {
+                posts = posts.Skip(pageSize*(model.StartPage.Value - 1));
+            }
+            posts = posts.Take(pageSize);
+
+            var postsToReturn = posts.ToList().Select(p => new
+            {
+                id = p.Id,
+                text = p.Text,
+                date = p.Date.ToString("o"),
+                imageDataUrl = p.ImageDataURL,
+                ownerName = p.Owner.Name,
+                ownerEmail = p.Owner.Email,
+                ownerPhone = p.Owner.PhoneNumber,
+            });
+
+            return Ok(
+                new
+                {
+                    numItems,
+                    numPages,
+                    posts = postsToReturn
+                }
+            );
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
         public IHttpActionResult GetAdById(int id)
         {
             var ad = this.Data.Posts.All()
@@ -40,9 +97,8 @@
             });
         }
 
-        // PUT api/User/Ads/{id}
         [HttpPut]
-        [Route("posts/{id:int}")]
+        [Route("{id:int}")]
         public IHttpActionResult UpdatePost(int id, [FromBody]UserUpdateAdBindingModel model)
         {
             // Validate the input parameters
@@ -80,10 +136,9 @@
             );
         }
 
-        // DELETE api/User/Ads/{id}
         [HttpDelete]
-        [Route("posts/{id:int}")]
-        public IHttpActionResult DeleteAd(int id)
+        [Route("{id:int}")]
+        public IHttpActionResult DeletePost(int id)
         {
             var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)

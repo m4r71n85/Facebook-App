@@ -195,7 +195,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\Admin\AdminTownBindingModel.cs" />
@@ -210,7 +209,7 @@
     <Compile Include="Models\Users\LoginUserBindingModel.cs" />
     <Compile Include="Models\Users\UserUpdateAdBindingModel.cs" />
     <Compile Include="Models\Users\UserCreateAdBindingModel.cs" />
-    <Compile Include="Models\Ads\GetAdsBindingModel.cs" />
+    <Compile Include="Models\Ads\PostsPageSettingsModel.cs" />
     <Compile Include="Controllers\TownsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

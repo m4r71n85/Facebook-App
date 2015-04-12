@@ -3,14 +3,14 @@
 app.factory('postsService', [
     '$http', '$q', 'toaster', 'postFilterHelper', 'apiUrl',
     function ($http, $q, toaster, postFilterHelper, apiUrl) {
+        var settings = postFilterHelper.getSettings();
 
         var getPosts = function () {
-            return {};
             var deferred = $q.defer();
-            $http.get(apiUrl + 'api/posts', {
+            $http.get(apiUrl + 'api/posts/all', {
                 params: {
                     startpage: postFilterHelper.getPage(),
-                    pagesize: settings.pageSize,
+                    pagesize: settings.pageSize
                 }
             })
             .success(function (data) {

@@ -7,9 +7,10 @@ app.controller('homeController',
         $scope.posts = posts;
         $scope.pageSettings = postFilterHelper.getSettings();
 
+
         $scope.loadPage = function () {
             postFilterHelper.setPage($scope.currentPage);
-            postsService.getAds().then(
+            postsService.getPosts().then(
                 function(data) {
                     $scope.posts = data;
                 });

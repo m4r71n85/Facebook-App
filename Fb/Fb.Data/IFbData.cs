@@ -3,17 +3,15 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
 
-    public interface IAdsData
+    public interface IFbData
     {
         IRepository<ApplicationUser> Users { get; }
 
         IRepository<IdentityRole> UserRoles { get; }
 
-        IRepository<Advertisement> Ads { get; }
+        IRepository<Post> Posts { get; }
 
         IRepository<Town> Towns { get; }
-
-        IRepository<Category> Categories { get; }
 
         int SaveChanges();
     }

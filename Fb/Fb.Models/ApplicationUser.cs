@@ -10,11 +10,11 @@
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        private ICollection<Advertisement> ads;
+        private ICollection<Post> ads;
 
         public ApplicationUser()
         {
-            this.ads = new HashSet<Advertisement>();
+            this.ads = new HashSet<Post>();
         }
 
         [Required]
@@ -24,7 +24,7 @@
 
         public virtual Town Town { get; set; }
 
-        public virtual ICollection<Advertisement> Ads
+        public virtual ICollection<Post> Ads
         {
             get { return this.ads; }
             set { this.ads = value; }

@@ -54,9 +54,9 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="EfRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IAdsData.cs" />
+    <Compile Include="IFbData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="AdsData.cs" />
+    <Compile Include="FbData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

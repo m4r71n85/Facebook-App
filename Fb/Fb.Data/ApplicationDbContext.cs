@@ -8,12 +8,12 @@
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("FbDatabase", throwIfV1Schema: false)
+            : base("FbDatabase", false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
-        public IDbSet<Advertisement> Advertisements { get; set; }
+        public IDbSet<Post> Posts { get; set; }
 
         public IDbSet<Town> Towns { get; set; }
 
@@ -22,11 +22,6 @@
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

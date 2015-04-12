@@ -25,13 +25,13 @@
     {
         private ApplicationUserManager userManager;
 
-        public UserController(IAdsData data)
+        public UserController(IFbData data)
             : base(data)
         {
         }
 
         public UserController()
-            : base(new AdsData())
+            : base(new FbData())
         {
             this.userManager = new ApplicationUserManager(
                 new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -157,19 +157,15 @@
                 return this.BadRequest("Invalid user token! Please login again!");
             }
 
-            var ad = new Advertisement()
+            var ad = new Post()
             {
-                Title = model.Title,
                 Text = model.Text,
                 ImageDataURL = model.ImageDataURL,
-                CategoryId = model.CategoryId,
-                TownId = model.TownId,
                 Date = DateTime.Now,
-                Status = AdvertisementStatus.WaitingApproval,
                 OwnerId = currentUserId
             };
 
-            this.Data.Ads.Add(ad);
+            this.Data.Posts.Add(ad);
 
             this.Data.SaveChanges();
 
@@ -208,11 +204,8 @@
             }
 
             // Select current user's ads by given status
-            var ads = this.Data.Ads.All().Include(ad => ad.Category).Include(ad => ad.Town);
-            if (model.Status.HasValue)
-            {
-                ads = ads.Where(ad => ad.Status == model.Status.Value);
-            }
+            var ads = this.Data.Posts.All();
+            
             ads = ads.Where(ad => ad.OwnerId == currentUserId);
             ads = ads.OrderByDescending(ad => ad.Date).ThenBy(ad => ad.Id);
 
@@ -234,13 +227,9 @@
             var adsToReturn = ads.ToList().Select(ad => new
             {
                 id = ad.Id,
-                title = ad.Title,
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
-                categoryName = ad.Category == null ? null : ad.Category.Name,
-                townName = ad.Town == null ? null : ad.Town.Name,
-                status = ad.Status.ToString(),
             });
 
             return this.Ok(
@@ -251,48 +240,6 @@
                     ads = adsToReturn
                 }
             );
-        }
-
-        // PUT api/User/Ads/Deactivate/{id}
-        [HttpPut]
-        [Route("Ads/Deactivate/{id:int}")]
-        public IHttpActionResult DeactivateAd(int id)
-        {
-            return ChangeAdStatus(id, AdvertisementStatus.Inactive,
-                "Advertisement #" + id + " deactivated.");
-        }
-
-        // PUT api/User/Ads/PublishAgain/{id}
-        [HttpPut]
-        [Route("Ads/PublishAgain/{id:int}")]
-        public IHttpActionResult PublishAgainAd(int id)
-        {
-            return ChangeAdStatus(id, AdvertisementStatus.WaitingApproval,
-                "Advertisement #" + id + " submitted for approval.");
-        }
-
-        private IHttpActionResult ChangeAdStatus(int advertisementId,
-            AdvertisementStatus newAdvertisementStatus, string message)
-        {
-            var ad = this.Data.Ads.All().FirstOrDefault(a => a.Id == advertisementId);
-
-            if (ad == null)
-            {
-                return this.BadRequest("Advertisement #" + advertisementId + " not found!");
-            }
-
-            // Validate the current user ownership over the ad
-            var currentUserId = User.Identity.GetUserId();
-            if (ad.OwnerId != currentUserId)
-            {
-                return this.Unauthorized();
-            }
-
-            ad.Status = newAdvertisementStatus;
-
-            this.Data.SaveChanges();
-
-            return this.Ok(new { message });
         }
 
 

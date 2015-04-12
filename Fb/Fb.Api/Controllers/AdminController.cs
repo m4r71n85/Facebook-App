@@ -17,13 +17,13 @@
     [RoutePrefix("api/admin")]
     public class AdminController : BaseApiController
     {
-        public AdminController(IAdsData data)
+        public AdminController(IFbData data)
             : base(data)
         {
         }
 
         public AdminController()
-            : base(new AdsData())
+            : base(new FbData())
         {
             this.userManager = new ApplicationUserManager(
                 new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -57,22 +57,9 @@
             }
 
             // Select ads by given status, category and town (apply filtering)
-            var ads = this.Data.Ads.All()
-                .Include(ad => ad.Category)
-                .Include(ad => ad.Town)
+            var ads = this.Data.Posts.All()
                 .Include(ad => ad.Owner);
-            if (model.Status.HasValue)
-            {
-                ads = ads.Where(ad => ad.Status == model.Status.Value);
-            }
-            if (model.CategoryId.HasValue)
-            {
-                ads = ads.Where(ad => ad.CategoryId == model.CategoryId.Value);
-            }
-            if (model.TownId.HasValue)
-            {
-                ads = ads.Where(ad => ad.TownId == model.TownId.Value);
-            }
+            
 
             // Apply sorting by the specified column / expression (prefix '-' for descending)
             if (model.SortBy != null)
@@ -118,7 +105,6 @@
             var adsToReturn = ads.ToList().Select(ad => new
             {
                 id = ad.Id,
-                title = ad.Title,
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
@@ -126,11 +112,6 @@
                 ownerName = ad.Owner.Name,
                 ownerEmail = ad.Owner.Email,
                 ownerPhone = ad.Owner.PhoneNumber,
-                categoryId = ad.CategoryId,
-                categoryName = (ad.Category != null) ? ad.Category.Name : null,
-                townId = ad.TownId,
-                townName = (ad.Town != null) ? ad.Town.Name : null,
-                status = ad.Status.ToString(),
             });
 
             return this.Ok(
@@ -148,14 +129,12 @@
         [Route("Ads/Approve/{id:int}")]
         public IHttpActionResult ApproveAd(int id)
         {
-            var ad = this.Data.Ads.All().FirstOrDefault(a => a.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(a => a.Id == id);
 
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
             }
-
-            ad.Status = AdvertisementStatus.Published;
 
             this.Data.SaveChanges();
 
@@ -167,14 +146,13 @@
         [Route("Ads/Reject/{id:int}")]
         public IHttpActionResult RejectAd(int id)
         {
-            var ad = this.Data.Ads.All().FirstOrDefault(a => a.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(a => a.Id == id);
 
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
             }
 
-            ad.Status = AdvertisementStatus.Rejected;
 
             this.Data.SaveChanges();
 
@@ -186,9 +164,7 @@
         [Route("Ads/{id:int}")]
         public IHttpActionResult GetAd(int id)
         {
-            var ad = this.Data.Ads.All()
-                .Include(a => a.Category)
-                .Include(a => a.Town)
+            var ad = this.Data.Posts.All()
                 .Include(a => a.Owner)
                 .FirstOrDefault(a => a.Id == id);
 
@@ -201,7 +177,6 @@
             var adToReturn = new
             {
                 id = ad.Id,
-                title = ad.Title,
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
@@ -209,11 +184,6 @@
                 ownerName = ad.Owner.Name,
                 ownerEmail = ad.Owner.Email,
                 ownerPhone = ad.Owner.PhoneNumber,
-                categoryId = ad.CategoryId,
-                categoryName = (ad.Category != null) ? ad.Category.Name : null,
-                townId = ad.TownId,
-                townName = (ad.Town != null) ? ad.Town.Name : null,
-                status = ad.Status.ToString(),
             };
 
             return this.Ok(adToReturn);
@@ -231,14 +201,13 @@
             }
 
             // Find the advertisement for editing
-            var ad = this.Data.Ads.All().FirstOrDefault(d => d.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
             }
 
             // Modify the advertisement properties
-            ad.Title = model.Title;
             ad.Text = model.Text;
             if (model.ChangeImage)
             {
@@ -254,13 +223,10 @@
                 }
                 ad.OwnerId = newOwner.Id;
             }
-            ad.CategoryId = model.CategoryId;
-            ad.TownId = model.TownId;
             ad.Date = model.Date;
-            ad.Status = model.Status;
 
             // Save the changes in the database
-            this.Data.Ads.SaveChanges();
+            this.Data.Posts.SaveChanges();
 
             return this.Ok(
                 new
@@ -275,15 +241,15 @@
         [Route("Ads/{id:int}")]
         public IHttpActionResult DeleteAd(int id)
         {
-            var ad = this.Data.Ads.All().FirstOrDefault(d => d.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
             }
 
-            this.Data.Ads.Delete(ad);
+            this.Data.Posts.Delete(ad);
 
-            this.Data.Ads.SaveChanges();
+            this.Data.Posts.SaveChanges();
 
             return this.Ok(
                new

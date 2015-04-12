@@ -11,7 +11,7 @@
 
     public class PostController : BaseApiController
     {
-        public PostController(IAdsData data)
+        public PostController(IFbData data)
             : base(data)
         {
         }
@@ -20,8 +20,7 @@
         [Route("posts/{id:int}")]
         public IHttpActionResult GetAdById(int id)
         {
-            var ad = this.Data.Ads.All()
-                .Include(a => a.Category).Include(a => a.Town)
+            var ad = this.Data.Posts.All()
                 .FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
@@ -38,14 +37,9 @@
             return this.Ok(new
             {
                 id = ad.Id,
-                title = ad.Title,
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
-                categoryId = ad.CategoryId,
-                categoryName = ad.Category == null ? null : ad.Category.Name,
-                townId = ad.TownId,
-                townName = ad.Town == null ? null : ad.Town.Name
             });
         }
 
@@ -60,7 +54,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var ad = this.Data.Ads.All().FirstOrDefault(d => d.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
@@ -73,17 +67,13 @@
                 return this.Unauthorized();
             }
 
-            ad.Title = model.Title;
             ad.Text = model.Text;
             if (model.ChangeImage)
             {
                 ad.ImageDataURL = model.ImageDataURL;
             }
-            ad.CategoryId = model.CategoryId;
-            ad.TownId = model.TownId;
-            ad.Status = AdvertisementStatus.Inactive;
 
-            this.Data.Ads.SaveChanges();
+            this.Data.Posts.SaveChanges();
 
             return this.Ok(
                 new
@@ -98,7 +88,7 @@
         [Route("posts/{id:int}")]
         public IHttpActionResult DeleteAd(int id)
         {
-            var ad = this.Data.Ads.All().FirstOrDefault(d => d.Id == id);
+            var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");
@@ -111,9 +101,9 @@
                 return this.Unauthorized();
             }
 
-            this.Data.Ads.Delete(ad);
+            this.Data.Posts.Delete(ad);
 
-            this.Data.Ads.SaveChanges();
+            this.Data.Posts.SaveChanges();
 
             return this.Ok(
                new

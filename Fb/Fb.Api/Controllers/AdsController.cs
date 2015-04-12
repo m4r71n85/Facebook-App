@@ -11,11 +11,11 @@
     public class AdsController : BaseApiController
     {
         public AdsController()
-            : this(new AdsData())
+            : this(new FbData())
         {
         }
 
-        public AdsController(IAdsData data)
+        public AdsController(IFbData data)
             : base(data)
         {
         }
@@ -31,16 +31,8 @@
             }
 
             // Select all published ads by given category, town
-            var ads = this.Data.Ads.All().Include(ad => ad.Owner);
-            if (model.CategoryId.HasValue)
-            {
-                ads = ads.Where(ad => ad.Category.Id == model.CategoryId);
-            }
-            if (model.TownId.HasValue)
-            {
-                ads = ads.Where(ad => ad.Town.Id == model.TownId);
-            }
-            ads = ads.Where(ad => ad.Status == AdvertisementStatus.Published);
+            var ads = this.Data.Posts.All().Include(ad => ad.Owner);
+            
             ads = ads.OrderByDescending(ad => ad.Date).ThenBy(ad => ad.Id);
 
             // Apply paging: find the requested page (by given start page and page size)
@@ -61,15 +53,12 @@
             var adsToReturn = ads.ToList().Select(ad => new
             {
                 id = ad.Id,
-                title = ad.Title,
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
                 ownerName = ad.Owner.Name,
                 ownerEmail = ad.Owner.Email,
                 ownerPhone = ad.Owner.PhoneNumber,
-                categoryId = ad.CategoryId,
-                townId = ad.TownId
             });
 
             return this.Ok(

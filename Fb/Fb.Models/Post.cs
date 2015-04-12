@@ -3,14 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Advertisement
+    public class Post
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        [MinLength(1)]
-        public string Title { get; set; }
 
         [Required]
         [MinLength(1)]
@@ -23,18 +19,8 @@
 
         public virtual ApplicationUser Owner { get; set; }
 
-        public int? CategoryId { get; set; }
-        
-        public virtual Category Category { get; set; }
-
-        public int? TownId { get; set; }
-
-        public virtual Town Town { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
-
-        [Required]
-        public AdvertisementStatus Status { get; set; }
     }
 }

@@ -7,12 +7,12 @@
     [Authorize]
     public class BaseApiController : ApiController
     {
-        public BaseApiController(IAdsData data)
+        public BaseApiController(IFbData data)
         {
             Data = data;
         }
 
-        protected IAdsData Data { get; private set; }
+        protected IFbData Data { get; private set; }
 
         protected IHttpActionResult GetErrorResult(IdentityResult result)
         {

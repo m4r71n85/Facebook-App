@@ -9,11 +9,11 @@
     public class CategoriesController : BaseApiController
     {
         public CategoriesController()
-            : this(new AdsData())
+            : this(new FbData())
         {
         }
 
-        public CategoriesController(IAdsData data)
+        public CategoriesController(IFbData data)
             : base(data)
         {
         }

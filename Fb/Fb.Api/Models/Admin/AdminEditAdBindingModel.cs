@@ -26,7 +26,5 @@
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
-        public AdvertisementStatus Status { get; set; }
     }
 }

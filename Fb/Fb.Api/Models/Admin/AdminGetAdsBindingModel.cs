@@ -10,8 +10,6 @@
             this.StartPage = 1;
         }
 
-        public AdvertisementStatus? Status { get; set; }
-
         public int? CategoryId { get; set; }
 
         public int? TownId { get; set; }

@@ -9,11 +9,11 @@
     public class TownsController : BaseApiController
     {
         public TownsController()
-            : this(new AdsData())
+            : this(new FbData())
         {
         }
 
-        public TownsController(IAdsData data)
+        public TownsController(IFbData data)
             : base(data)
         {
         }

@@ -10,8 +10,6 @@
             this.StartPage = 1;
         }
 
-        public AdvertisementStatus? Status { get; set; }
-
         [Range(1, 100000, ErrorMessage = "Page number should be in range [1...100000].")]
         public int? StartPage { get; set; }
 

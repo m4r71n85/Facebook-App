@@ -6,6 +6,7 @@
     using Data;
     using Fb.Models;
 
+    [AllowAnonymous]
     public class TownsController : BaseApiController
     {
         public TownsController()
@@ -18,9 +19,8 @@
         {
         }
 
-        // GET api/Towns
-        /// <returns>List of all towns sorted by Id</returns>
         [HttpGet]
+        [Route("api/towns")]
         public IEnumerable<Town> GetTowns()
         {
             var towns = this.Data.Towns.All().OrderBy(town => town.Id).ToList();

@@ -165,8 +165,8 @@
     <Content Include="App\services\adminTownService.js" />
     <Content Include="App\services\adminCategoryService.js" />
     <Content Include="App\services\adminUserService.js" />
-    <Content Include="App\services\adsFiltersHelper.js" />
-    <Content Include="App\services\adsService.js" />
+    <Content Include="App\services\postFilterHelper.js" />
+    <Content Include="App\services\postsService.js" />
     <Content Include="App\services\authenticationService.js" />
     <Content Include="App\services\authSessionHelper.js" />
     <Content Include="App\services\datePickerService.js" />

@@ -41,7 +41,15 @@ app.config([
             title: 'Register',
             url: '/register',
             templateUrl: 'App/templates/register.html',
-            controller: 'registerController'
+            controller: 'registerController',
+            resolve: {
+                allTowns: [
+                    'menuItemsServices',
+                    function (menuItemsServices) {
+                        return menuItemsServices.getAllTowns();
+                    }
+                ]
+            }
         });
 
         $stateProvider.state('home', {
@@ -50,17 +58,9 @@ app.config([
             templateUrl: 'App/templates/home.html',
             controller: 'homeController',
             resolve: {
-                allCategories: [
-                    'menuItemsServices', function (menuItemsServices) {
-                        return menuItemsServices.getAllCategories();
-                    }],
-                allTowns: [
-                    'menuItemsServices', function (menuItemsServices) {
-                        return menuItemsServices.getAllTowns();
-                    }],
-                ads: [
-                    'adsService', function (adsService) {
-                        return adsService.getAds();
+                posts: [
+                    'postsService', function (postsService) {
+                        return postsService.getPosts();
                     }
                 ]
             },
@@ -289,9 +289,11 @@ app.config([
 // Reset filters on state change
 // Set page title
 //================================================ 
-app.run(['$rootScope', 'adsFilterHelper', function ($rootScope, adsFilterHelper) {
+
+app.run(['$rootScope', 'postFilterHelper', function ($rootScope, postFilterHelper) {
+    console.log($rootScope);
     $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams) {
-        adsFilterHelper.resetSettings();
+        postFilterHelper.resetSettings();
         $rootScope.title = $rootScope.$state.current.title;
     });
 }]);

@@ -5,7 +5,7 @@
     </li>
     <!--!item.authenticated || item.authenticated && isloggedin-->
     <li ng-repeat="item in userAdsMenuItems"
-        ng-class="{active: item.status == adsFilterHelper.getStatus()}">
+        ng-class="{active: item.status == postFilterHelper.getStatus()}">
         <a href ng-click="setFilter(item.status)">
             {{item.title}}
         </a>

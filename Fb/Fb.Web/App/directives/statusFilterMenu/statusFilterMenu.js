@@ -7,10 +7,10 @@ app.directive('statusFilterMenu',
         replace:true,
         templateUrl: '/app/directives/statusFilterMenu/statusFilterMenu.html',
         controller: [
-            'adsFilterHelper', '$rootScope', '$state', '$stateParams', '$scope',
-            function (adsFilterHelper, $rootScope, $state, $stateParams, $scope) {
+            'postFilterHelper', '$rootScope', '$state', '$stateParams', '$scope',
+            function (postFilterHelper, $rootScope, $state, $stateParams, $scope) {
                 $scope.$state = $state;
-                $scope.adsFilterHelper = adsFilterHelper;
+                $scope.postFilterHelper = postFilterHelper;
 
                 $scope.userAdsMenuItems = [
                     { title: "All", status: "" },
@@ -21,7 +21,7 @@ app.directive('statusFilterMenu',
                 ];
 
                 $scope.setFilter = function (status) {
-                    adsFilterHelper.setStatus(status);
+                    postFilterHelper.setStatus(status);
                     $rootScope.$broadcast('statusSet');
                 }
 

@@ -1,13 +1,10 @@
 ﻿namespace Fb.Api.Controllers
 {
-    using System.Data.Entity;
+    using System.Linq;
     using System.Web.Http;
-    using Fb.Models;
+    using Data;
     using Microsoft.AspNet.Identity;
     using Models.Users;
-    using System.Linq;
-    using Data;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class PostController : BaseApiController
     {
@@ -46,7 +43,7 @@
         // PUT api/User/Ads/{id}
         [HttpPut]
         [Route("posts/{id:int}")]
-        public IHttpActionResult UpdateAdd(int id, [FromBody]UserUpdateAdBindingModel model)
+        public IHttpActionResult UpdatePost(int id, [FromBody]UserUpdateAdBindingModel model)
         {
             // Validate the input parameters
             if (!ModelState.IsValid)
@@ -54,7 +51,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var ad = this.Data.Posts.All().FirstOrDefault(d => d.Id == id);
+            var ad = Data.Posts.All().FirstOrDefault(d => d.Id == id);
             if (ad == null)
             {
                 return this.BadRequest("Advertisement #" + id + " not found!");

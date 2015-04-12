@@ -1,15 +1,15 @@
 ﻿'use strict';
 
 app.controller('userAdsController',
-['ads', 'adsFilterHelper', 'adsService', '$modal', '$state', '$scope', 'itemsPerPage',
-    function (ads, adsFilterHelper, adsService, $modal, $state, $scope, itemsPerPage) {
-        adsFilterHelper.resetSettings();
+['ads', 'postFilterHelper', 'adsService', '$modal', '$state', '$scope', 'itemsPerPage',
+    function (ads, postFilterHelper, adsService, $modal, $state, $scope, itemsPerPage) {
+        postFilterHelper.resetSettings();
         $scope.itemsPerPage = itemsPerPage;
         $scope.ads = ads;
-        $scope.pageSettings = adsFilterHelper.getSettings();
+        $scope.pageSettings = postFilterHelper.getSettings();
 
         $scope.loadPage = function () {
-            adsFilterHelper.setPage($scope.currentPage);
+            postFilterHelper.setPage($scope.currentPage);
             updatePageAds();
         }
 

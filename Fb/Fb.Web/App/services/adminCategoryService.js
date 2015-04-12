@@ -1,17 +1,17 @@
 ﻿'use strict';
 
 app.factory('adminCategoryService', [
-    'adsFilterHelper', 'modelStateErrorsService', '$http', '$q', 'toaster', 'apiUrl',
-    function (adsFilterHelper, modelStateErrorsService, $http, $q, toaster, apiUrl) {
-        var settings = adsFilterHelper.getSettings();
+    'postFilterHelper', 'modelStateErrorsService', '$http', '$q', 'toaster', 'apiUrl',
+    function (postFilterHelper, modelStateErrorsService, $http, $q, toaster, apiUrl) {
+        var settings = postFilterHelper.getSettings();
 
         var getCategories = function () {
             var deferred = $q.defer();
             $http.get(apiUrl + 'api/admin/categories', {
                 params: {
-                    startpage: adsFilterHelper.getPage(),
+                    startpage: postFilterHelper.getPage(),
                     pagesize: settings.pageSize * 2,
-                    //sortBy: adsFilterHelper.getSortBy()
+                    //sortBy: postFilterHelper.getSortBy()
                 }
             })
             .success(function (data) {

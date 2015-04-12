@@ -1,21 +1,16 @@
-﻿"http://localhost:1337/api/ads?pagesize=3&startpage=2"
+﻿'use strict';
 
-'use strict';
+app.factory('postsService', [
+    '$http', '$q', 'toaster', 'postFilterHelper', 'apiUrl',
+    function ($http, $q, toaster, postFilterHelper, apiUrl) {
 
-app.factory('adminAdsService', [
-    'postFilterHelper', '$http', '$q', 'toaster', 'apiUrl',
-    function (postFilterHelper, $http, $q, toaster, apiUrl) {
-        var settings = postFilterHelper.getSettings();
-
-        var getAds = function () {
+        var getPosts = function () {
+            return {};
             var deferred = $q.defer();
-            $http.get(apiUrl + 'api/admin/ads', {
+            $http.get(apiUrl + 'api/posts', {
                 params: {
                     startpage: postFilterHelper.getPage(),
                     pagesize: settings.pageSize,
-                    categoryid: postFilterHelper.getCategory(),
-                    townid: postFilterHelper.getTown(),
-                    status: postFilterHelper.getStatus()
                 }
             })
             .success(function (data) {
@@ -27,48 +22,9 @@ app.factory('adminAdsService', [
             return deferred.promise;
         }
 
-        var approveAd = function (adId) {
+        var getPost = function (postId) {
             var deferred = $q.defer();
-            $http.put(apiUrl + 'api/admin/ads/approve/' + adId)
-            .success(function (data) {
-                toaster.pop('success', '', "Advertisement published.");
-                deferred.resolve(data);
-            })
-            .error(function (data, status) {
-                deferred.reject(data, status);
-            });
-            return deferred.promise;
-        }
-
-        var rejectAd = function (adId) {
-            var deferred = $q.defer();
-            $http.put(apiUrl + 'api/admin/ads/reject/' + adId)
-            .success(function (data) {
-                toaster.pop('success', '', "Advertisement rejected.");
-                deferred.resolve(data);
-            })
-            .error(function (data, status) {
-                deferred.reject(data, status);
-            });
-            return deferred.promise;
-        }
-
-        var deleteAd = function (adId) {
-            var deferred = $q.defer();
-            $http.delete(apiUrl + 'api/admin/ads/' + adId)
-            .success(function (data) {
-                toaster.pop('success', '', "Advertisement deleted.");
-                deferred.resolve(data);
-            })
-            .error(function (data, status) {
-                deferred.reject(data, status);
-            });
-            return deferred.promise;
-        }
-
-        var getAd = function (adId) {
-            var deferred = $q.defer();
-            $http.get(apiUrl + 'api/admin/ads/' + adId)
+            $http.get(apiUrl + 'api/user/posts/' + postId)
             .success(function (data) {
                 deferred.resolve(data);
             })
@@ -78,11 +34,54 @@ app.factory('adminAdsService', [
             return deferred.promise;
         }
 
-        var saveEdit = function (ad) {
+        var getUserPosts = function () {
             var deferred = $q.defer();
-            $http.put(apiUrl + 'api/admin/ads/' + ad.id, ad)
+            $http.get(apiUrl + 'api/user/posts', {
+                params: {
+                    startpage: postFilterHelper.getPage(),
+                    pagesize: settings.pageSize,
+                }
+            })
             .success(function (data) {
-                toaster.pop('success', '', "Advertisement changes saved.");
+                deferred.resolve(data);
+            })
+            .error(function (data, status) {
+                deferred.reject(data, status);
+            });
+            return deferred.promise;
+        }
+
+        var publishPost = function (post) {
+            var deferred = $q.defer();
+            $http.post(apiUrl + 'api/user/posts', post)
+            .success(function (data) {
+                deferred.resolve(data);
+                toaster.pop('success', '', "Post published.");
+            })
+            .error(function (data, status) {
+                deferred.reject(data, status);
+            });
+            return deferred.promise;
+        }
+       
+        var saveEdit = function (post) {
+            var deferred = $q.defer();
+            $http.put(apiUrl + 'api/user/posts/' + post.id, post)
+            .success(function (data) {
+                toaster.pop('success', '', "Post edited.");
+                deferred.resolve(data);
+            })
+            .error(function (data, status) {
+                deferred.reject(data, status);
+            });
+            return deferred.promise;
+        }
+
+        var deletePost = function (adId) {
+            var deferred = $q.defer();
+            $http.delete(apiUrl + 'api/user/posts/' + adId)
+            .success(function (data) {
+                toaster.pop('success', '', "Post deleted.");
                 deferred.resolve(data);
             })
             .error(function (data, status) {
@@ -92,12 +91,11 @@ app.factory('adminAdsService', [
         }
 
         return ({
-            getAds: getAds,
-            approveAd: approveAd,
-            rejectAd: rejectAd,
-            getAd: getAd,
-            deleteAd: deleteAd,
-            saveEdit: saveEdit,
+            getPosts: getPosts,
+            getPost: getPost,
+            getUserPosts: getUserPosts,
+            deletePost: deletePost,
+            saveEdit: saveEdit
         });
     }
 ])

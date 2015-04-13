@@ -20,10 +20,10 @@
 
         [Route("search")]
         [HttpPost]
-        public IHttpActionResult FindFriends([FromBody]FindFriendByStringModel findFriend)
+        public IHttpActionResult FindFriends([FromBody]FindFriendByStringModel searchCriterias)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
-            var searchPhrase = findFriend.SearchPhrase;
+            var searchPhrase = searchCriterias.SearchPhrase;
 
             var friends = Data.Users.All()
                 .Where(u => u.UserName.Contains(searchPhrase)

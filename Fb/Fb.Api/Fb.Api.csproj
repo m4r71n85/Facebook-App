@@ -209,7 +209,7 @@
     <Compile Include="Models\Users\LoginUserBindingModel.cs" />
     <Compile Include="Models\Users\UserUpdatePostBindingModel.cs" />
     <Compile Include="Models\Users\UserCreateAdBindingModel.cs" />
-    <Compile Include="Models\Ads\PostsPageSettingsModel.cs" />
+    <Compile Include="Models\Posts\PostsPageSettingsModel.cs" />
     <Compile Include="Controllers\TownsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

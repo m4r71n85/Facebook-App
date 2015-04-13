@@ -16,7 +16,7 @@ app.directive('navigationMenu',
                     if ($scope.isLoggedIn){
                         $scope.navigationMenuItems = [
                             { title: "Home", sref: "home", authenticated: true },
-                            { title: "Find Friends", sref: "#", authenticated: true },
+                            { title: "Find Friends", sref: "searchFriends", authenticated: true },
                             { title: "Edit Profile", sref: "userProfile", authenticated: true }
                         ];
                     }

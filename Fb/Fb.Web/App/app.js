@@ -66,6 +66,15 @@ app.config([
             },
         });
 
+        $stateProvider.state('searchFriends', {
+            title: 'Search For Friends',
+            url: '/search',
+            templateUrl: 'App/templates/searchFriends.html',
+            controller: 'friendsController'
+        });
+
+
+
         $stateProvider.state('publish', {
             title: 'Publish Advertisement',
             url: '/user/ads/publish',

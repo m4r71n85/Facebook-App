@@ -4,10 +4,10 @@
     using System.Web.Http;
     using Data;
     using Microsoft.AspNet.Identity;
-    using Models.Ads;
     using Models.Users;
     using Properties;
     using Fb.Models;
+    using Models.Posts;
 
     [RoutePrefix("api/posts")]
     public class PostController : BaseApiController

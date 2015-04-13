@@ -1,4 +1,4 @@
-﻿namespace Fb.Api.Models.Ads
+﻿namespace Fb.Api.Models.Posts
 {
     using System.ComponentModel.DataAnnotations;
 

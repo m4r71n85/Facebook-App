@@ -16,7 +16,7 @@
                     if ($scope.isLoggedIn) {
                         $scope.headerMenuItems = [
                             { title: "Home", sref: "home", authenticated: true },
-                            { title: "Find Friends", sref: "#", authenticated: true },
+                            { title: "Find Friends", sref: "searchFriends", authenticated: true },
                             { title: "Edit Profile", sref: "userProfile", authenticated: true }
                         ];
                     }
@@ -28,7 +28,7 @@
 
                     $scope.$on('authState', function () {
                         $scope.isLoggedIn = authSessionHelper.isLoggedIn();
-                        $scope.username = authSessionHelper.getUsername()
+                        $scope.username = authSessionHelper.getUsername();
                         $scope.isAdmin = authSessionHelper.isAdmin();
                     });
                 }

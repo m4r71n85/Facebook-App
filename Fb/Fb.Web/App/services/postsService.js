@@ -59,6 +59,7 @@ app.factory('postsService', [
                 toaster.pop('success', '', "Post liked.");
             })
             .error(function (data, status) {
+                toaster.pop('error', '', "Cannot like post more than one times.");
                 deferred.reject(data, status);
             });
             return deferred.promise;

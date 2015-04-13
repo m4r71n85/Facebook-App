@@ -10,11 +10,9 @@ app.factory('friendsService', [
         var getFriends = function (searchPhrase) {
             var deferred = $q.defer();
             $http.post(apiUrl + 'api/friends/search', {
-                searchCriterias: {
-                    startpage: postFilterHelper.getPage(),
-                    pagesize: settings.pageSize,
-                    searchPhrase: searchPhrase
-                }
+                startpage: postFilterHelper.getPage(),
+                pagesize: settings.pageSize,
+                searchPhrase: searchPhrase
             })
             .success(function (data) {
                 deferred.resolve(data);

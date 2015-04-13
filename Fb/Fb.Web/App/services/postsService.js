@@ -108,7 +108,8 @@ app.factory('postsService', [
             getPost: getPost,
             getUserPosts: getUserPosts,
             deletePost: deletePost,
-            saveEdit: saveEdit
+            saveEdit: saveEdit,
+            like: like
         });
     }
 ])

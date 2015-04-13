@@ -9,7 +9,6 @@ app.controller('editAdController',
         $scope.allCategories = allCategories;
         $scope.allTowns = allTowns;
         
-
         $scope.edit = function () {
             adsService.saveEdit($scope.ad).then(
                 function () {

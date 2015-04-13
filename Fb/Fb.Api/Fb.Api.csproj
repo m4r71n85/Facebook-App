@@ -207,7 +207,7 @@
     <Compile Include="Models\Admin\AdminEditUserBindingModel.cs" />
     <Compile Include="Models\Friends\FindFriendByStringModel.cs" />
     <Compile Include="Models\Users\LoginUserBindingModel.cs" />
-    <Compile Include="Models\Users\UserUpdateAdBindingModel.cs" />
+    <Compile Include="Models\Users\UserUpdatePostBindingModel.cs" />
     <Compile Include="Models\Users\UserCreateAdBindingModel.cs" />
     <Compile Include="Models\Ads\PostsPageSettingsModel.cs" />
     <Compile Include="Controllers\TownsController.cs" />

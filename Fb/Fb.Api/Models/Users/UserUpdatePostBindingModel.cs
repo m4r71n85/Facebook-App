@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class UserUpdateAdBindingModel
+    public class UserUpdatePostBindingModel
     {
         [Required]
         public string Title { get; set; }

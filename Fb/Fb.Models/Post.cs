@@ -19,6 +19,7 @@
 
         public virtual ApplicationUser Owner { get; set; }
 
+        public int Likes { get; set; }
 
         [Required]
         public DateTime Date { get; set; }

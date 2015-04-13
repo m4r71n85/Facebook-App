@@ -50,6 +50,19 @@ app.factory('postsService', [
             });
             return deferred.promise;
         }
+        
+        var like = function(post) {
+            var deferred = $q.defer();
+            $http.post(apiUrl + 'api/posts/like', post)
+            .success(function (data) {
+                deferred.resolve(data);
+                toaster.pop('success', '', "Post liked.");
+            })
+            .error(function (data, status) {
+                deferred.reject(data, status);
+            });
+            return deferred.promise;
+        }
 
         var publishPost = function (post) {
             var deferred = $q.defer();

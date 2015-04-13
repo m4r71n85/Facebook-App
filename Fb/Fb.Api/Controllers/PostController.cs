@@ -21,6 +21,13 @@
         {
         }
 
+        [HttpPost]
+        [Route("like")]
+        public IHttpActionResult LikePosts([FromUri] UserUpdatePostBindingModel model)
+        {
+            //add like
+            return Ok(10);
+        }
 
         [HttpGet]
         [Route("all")]
@@ -99,7 +106,7 @@
 
         [HttpPut]
         [Route("{id:int}")]
-        public IHttpActionResult UpdatePost(int id, [FromBody]UserUpdateAdBindingModel model)
+        public IHttpActionResult UpdatePost(int id, [FromBody]UserUpdatePostBindingModel model)
         {
             // Validate the input parameters
             if (!ModelState.IsValid)

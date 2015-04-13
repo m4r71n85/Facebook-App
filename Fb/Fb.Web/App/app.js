@@ -73,7 +73,11 @@ app.config([
             controller: 'friendsController'
         });
 
-
+        $stateProvider.state('bye', {
+            title: 'Good Bye',
+            url: '/bye',
+            templateUrl: 'App/templates/bye.html'
+        });
 
         $stateProvider.state('publish', {
             title: 'Publish Advertisement',

@@ -1,9 +1,9 @@
-﻿<form class="row">
+﻿<form class="row" ng-submit="search(searchPhrase)">
     <div class="col-sm-8">
-        <input type="text" ng-model="searchPhrase" class="form-control" placeholder="Searchphrase" required="required"/>
+        <input type="text" ng-model="searchPhrase" class="form-control" placeholder="Searchphrase" required="required" />
     </div>
     <div class="col-sm-2">
-        <button ng-click="search(searchPhrase)" class="btn btn-primary">Search</button>
+        <button class="btn btn-primary">Search</button>
     </div>
 </form>
 <div class="row" style="margin-bottom: 20px;">
@@ -16,7 +16,7 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             <div class="col-xs-2">
-                <img src="../../Content/images/nophoto.jpg" class="img-responsive" style="max-height: 70px; display: inline-block" />
+                <img src="../../Content/images/nophoto.jpg" class="img-responsive" style="max-height: 70px; display: inline-block"/>
             </div>
             <div class="col-xs-10">
                 <div>
@@ -31,4 +31,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="well margin-top-15" ng-show="!friends.length && searched">
+    Sorry, no friends are meeting your criteria...
 </div>

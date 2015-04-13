@@ -22,8 +22,8 @@
                     }
 
                     $scope.logout = function () {
-                        authenticationService.logout();
-                        $state.go('home');
+                        authenticationService.logout()
+                        $state.go('bye');
                     }
 
                     $scope.$on('authState', function () {

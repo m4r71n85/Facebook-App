@@ -162,6 +162,7 @@
     <Content Include="App\modals\publishAgainAd\publishAgainAd.html" />
     <Content Include="App\modals\deactivateAd\deactivateAdController.js" />
     <Content Include="App\modals\publishAgainAd\publishAgainAdController.js" />
+    <Content Include="App\templates\bye.html" />
     <Content Include="App\services\friendsService.js" />
     <Content Include="App\services\adminAdsService.js" />
     <Content Include="App\services\adminTownService.js" />

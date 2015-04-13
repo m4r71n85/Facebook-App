@@ -15,6 +15,8 @@
 
         public IDbSet<Post> Posts { get; set; }
 
+        public IDbSet<LikePost> Likes { get; set; }
+
         public IDbSet<Town> Towns { get; set; }
 
         public IDbSet<Category> Categories { get; set; }

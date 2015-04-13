@@ -53,6 +53,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="LikePost.cs" />
     <Compile Include="Town.cs" />
     <Compile Include="Post.cs" />
   </ItemGroup>

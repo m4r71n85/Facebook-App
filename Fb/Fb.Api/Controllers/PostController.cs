@@ -7,6 +7,7 @@
     using Models.Ads;
     using Models.Users;
     using Properties;
+    using Fb.Models;
 
     [RoutePrefix("api/posts")]
     public class PostController : BaseApiController
@@ -21,12 +22,26 @@
         {
         }
 
-        [HttpPost]
-        [Route("like")]
-        public IHttpActionResult LikePosts([FromUri] UserUpdatePostBindingModel model)
+        [HttpGet]
+        [Route("like/{postId}")]
+        public IHttpActionResult LikePosts(int postId)
         {
-            //add like
-            return Ok(10);
+            var userId = User.Identity.GetUserId();
+            var post = this.Data.Posts.All().FirstOrDefault(p => p.Id == postId);
+
+            if (post.Likes.Any(l => l.OwnerId == userId))
+            {
+                return BadRequest("Cannot like post more than one times");
+            }
+
+            var like = new LikePost
+            {
+                OwnerId = userId
+            };
+
+            post.Likes.Add(like);
+            this.Data.Posts.SaveChanges();
+            return Ok(post.Likes.Count());
         }
 
         [HttpGet]

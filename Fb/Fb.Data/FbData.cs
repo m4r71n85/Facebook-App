@@ -39,6 +39,14 @@
             }
         }
 
+        public IRepository<LikePost> Likes
+        {
+            get
+            {
+                return GetRepository<LikePost>();
+            }
+        }
+
         public IRepository<Post> Posts
         {
             get

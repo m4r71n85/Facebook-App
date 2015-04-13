@@ -5,6 +5,8 @@
 
     public interface IFbData
     {
+        IRepository<LikePost> Likes { get; }
+
         IRepository<ApplicationUser> Users { get; }
 
         IRepository<IdentityRole> UserRoles { get; }

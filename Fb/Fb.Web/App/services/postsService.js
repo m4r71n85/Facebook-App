@@ -53,7 +53,7 @@ app.factory('postsService', [
         
         var like = function(post) {
             var deferred = $q.defer();
-            $http.post(apiUrl + 'api/posts/like', post)
+            $http.get(apiUrl + 'api/posts/like/' + post)
             .success(function (data) {
                 deferred.resolve(data);
                 toaster.pop('success', '', "Post liked.");

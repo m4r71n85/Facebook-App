@@ -17,12 +17,9 @@ app.controller('homeController',
         }
 
         $scope.like = function (post) {
-            console.log(post);
             postsService.like(post.id).then(
                 function(success) {
-                    //post.likes = success.like
                 }, function(error) {
-                
             });
         }
 

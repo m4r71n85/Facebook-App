@@ -50,6 +50,20 @@ app.factory('postsService', [
             });
             return deferred.promise;
         }
+
+
+        var getUserFriends = function () {
+            var deferred = $q.defer();
+            $http.get(apiUrl + 'api/user/friends')
+            .success(function (data) {
+                deferred.resolve(data);
+                console.log(data);
+            })
+            .error(function (data, status) {
+                deferred.reject(data, status);
+            });
+            return deferred.promise;
+        }
         
         var like = function(post) {
             var deferred = $q.defer();
@@ -110,7 +124,8 @@ app.factory('postsService', [
             getUserPosts: getUserPosts,
             deletePost: deletePost,
             saveEdit: saveEdit,
-            like: like
+            like: like,
+            getUserFriends: getUserFriends,
         });
     }
 ])

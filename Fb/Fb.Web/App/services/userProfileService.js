@@ -52,7 +52,7 @@ app.factory('userProfileService', [
         return ({
             get: get,
             updatePassword: updatePassword,
-            updateProfile: updateProfile
+            updateProfile: updateProfile,
         });
     }
 ])

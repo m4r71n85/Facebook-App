@@ -346,7 +346,35 @@
                     message = "User profile edited successfully.",
                 });
         }
+        
+        // GET api/Users/Friends
+        [HttpGet]
+        [Route("Friends")]
+        public IHttpActionResult GetUserFriends()
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
 
+            // Validate the current user exists in the database
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = this.Data.Users.All().FirstOrDefault(x => x.Id == currentUserId);
+            if (currentUser == null)
+            {
+                return this.BadRequest("Invalid user token! Please login again!");
+            }
+
+            var userFriends = currentUser.Friends;
+
+                userFriends.Select(usr => new
+                {
+                    usr.UserName
+                });
+
+                return this.Ok(currentUser.Friends.ToList());
+        }
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

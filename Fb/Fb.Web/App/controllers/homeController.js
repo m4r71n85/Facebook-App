@@ -7,7 +7,7 @@ app.controller('homeController',
         $scope.posts = posts;
         $scope.friends = friends;
         $scope.pageSettings = postFilterHelper.getSettings();
-        
+
         $scope.like = function (post) {
             postsService.like(post.id).then(
                 function (success) {
@@ -15,7 +15,7 @@ app.controller('homeController',
                 }, function (error) {
                 });
         }
-       
+
         $scope.loadPage = function () {
             postFilterHelper.setPage($scope.currentPage);
             postsService.getPosts().then(
@@ -29,4 +29,13 @@ app.controller('homeController',
             $scope.isLoggedIn = authSessionHelper.isLoggedIn();
         });
 
+        $scope.publishPost = function (postText) {
+            postsService.publishPost(postText).then(
+                function (success) {
+                    $('#text').val('');
+                    $scope.loadPage();
+                }, function (error) {
+                    console.log(error)
+                });
+        }
     }]);

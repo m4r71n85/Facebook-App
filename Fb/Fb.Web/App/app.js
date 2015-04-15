@@ -8,6 +8,7 @@ app.config([
     function ($stateProvider, $httpProvider, $urlRouterProvider, $provide) {
 
         $provide.constant('apiUrl', 'http://bogotafbapp.azurewebsites.net/webapi/');
+        //$provide.constant('apiUrl', 'http://localhost:1337/');
         $provide.constant('itemsPerPage', 3);
 
         //================================================

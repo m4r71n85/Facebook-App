@@ -79,8 +79,9 @@ app.factory('postsService', [
         }
 
         var publishPost = function (post) {
+            var data = { Text: post };
             var deferred = $q.defer();
-            $http.post(apiUrl + 'api/user/posts', post)
+            $http.put(apiUrl + 'api/posts/create', data)
             .success(function (data) {
                 deferred.resolve(data);
                 toaster.pop('success', '', "Post published.");
@@ -120,6 +121,7 @@ app.factory('postsService', [
         return ({
             getPosts: getPosts,
             getPost: getPost,
+            publishPost:publishPost,
             getUserPosts: getUserPosts,
             deletePost: deletePost,
             saveEdit: saveEdit,

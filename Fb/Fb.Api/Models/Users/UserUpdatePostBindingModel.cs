@@ -4,7 +4,6 @@
 
     public class UserUpdatePostBindingModel
     {
-        [Required]
         public string Title { get; set; }
 
         [Required]

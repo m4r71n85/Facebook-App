@@ -80,6 +80,8 @@
                 ownerName = p.Owner.Name,
                 ownerEmail = p.Owner.Email,
                 ownerPhone = p.Owner.PhoneNumber,
+                likeCount = p.Likes.Count,
+                like = p.Likes
             });
 
             return Ok(

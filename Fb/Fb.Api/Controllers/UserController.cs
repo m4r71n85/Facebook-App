@@ -162,7 +162,7 @@
                 Text = model.Text,
                 ImageDataURL = model.ImageDataURL,
                 Date = DateTime.Now,
-                OwnerId = currentUserId
+                OwnerId = currentUserId,
             };
 
             this.Data.Posts.Add(ad);
@@ -230,6 +230,7 @@
                 text = ad.Text,
                 date = ad.Date.ToString("o"),
                 imageDataUrl = ad.ImageDataURL,
+                likes = ad.Likes
             });
 
             return this.Ok(

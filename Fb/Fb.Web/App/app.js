@@ -65,8 +65,6 @@ app.config([
                 ],
                 friends: [
                     'postsService', function (postsService) {
-                        console.log('postsService()');
-                        console.log(postsService.getUserFriends());
                         return postsService.getUserFriends();
                     }
                 ],

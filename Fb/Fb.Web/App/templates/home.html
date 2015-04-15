@@ -3,10 +3,9 @@
     <ng-form name="submit-status-form">
         <div class="form-group" style="margin-bottom: 50px;">
             <textarea ng-model="status.text" id="text" name="text" placeholder="What do you think?" class="form-control" ng-required="true"></textarea>
-            <button class="btn btn-primary pull-right" name="publish" >Publish</button>
+            <button class="btn btn-primary pull-right" name="publish">Publish</button>
         </div>
     </ng-form>
-
     <div ng-repeat="post in posts.posts">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -19,7 +18,7 @@
             <div class="panel-body">
                 <div class="well" ng-bind="post.text"></div>
                 <div style="font-size: 12px" class="text-muted">
-                    <a href="" ng-click="like(post)">Like</a> | <a href="">Comment</a> | <a href="">Share</a>
+                    <a href="" ng-click="like(post)">Like</a> | <a href="">Comment</a> | <a href="">Share</a> | <img src="http://img2.wikia.nocookie.net/__cb20120118234601/callofduty/images/c/cf/Facebook_like_buton.png" width="23px" height="20px" /> {{post.likeCount}}
                 </div>
             </div>
         </div>
@@ -27,13 +26,11 @@
     <div class="well margin-top-15" ng-show="!posts.numItems">
         Sorry, there are no posts on your wall...
     </div>
-
     <!-- Pagination-->
     <div class="row text-center" ng-show="posts.numItems > itemsPerPage">
         <pagination boundary-links="true" total-items="posts.numItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-click="loadPage()"></pagination>
     </div>
 </div>
-
 <div class="col-sm-2 col-xs-12">
     <ul class="nav nav-pills nav-stacked margin-bottom-15">
         <li>

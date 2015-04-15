@@ -1,5 +1,7 @@
 ﻿namespace Fb.Api.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
     using Data;
@@ -20,6 +22,107 @@
         public PostController(IFbData data)
             : base(data)
         {
+        }
+
+        [HttpPut]
+        [Route("create")]
+        public IHttpActionResult CreatePost([FromBody]UserUpdatePostBindingModel model)
+        {
+            // Validate the input parameters
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = Data.Users.All().FirstOrDefault(u => u.Id == currentUserId);
+            if (currentUser == null)
+            {
+                return BadRequest("Cannot find user");
+            }
+            currentUser.Posts.Add(new Post
+            {
+                Date = DateTime.Now,
+                ImageDataURL = model.ImageDataURL,
+                Text = model.Text
+            });
+
+
+            Data.Users.SaveChanges();
+
+            return this.Ok(
+                new
+                {
+                    message = "Post added successfully."
+                }
+            );
+        }
+
+        [HttpPut]
+        [Route("create/{userId}")]
+        public IHttpActionResult CreatePost(string userId, [FromBody]UserUpdatePostBindingModel model)
+        {
+            // Validate the input parameters
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+
+            var currentUser = Data.Users.All().FirstOrDefault(u => u.Id == userId);
+            if (currentUser == null)
+            {
+                return BadRequest("Cannot find user");
+            }
+            currentUser.Posts.Add(new Post
+            {
+                Date = DateTime.Now,
+                ImageDataURL = model.ImageDataURL,
+                Text = model.Text
+            });
+
+
+            Data.Users.SaveChanges();
+
+            return Ok(
+                new
+                {
+                    message = "Post added successfully."
+                }
+            );
+        }
+
+        [HttpPut]
+        [Route("share/{postId}")]
+        public IHttpActionResult SharePost(int postId)
+        {
+            // Validate the input parameters
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = Data.Users.All().FirstOrDefault(u => u.Id == currentUserId);
+            if (currentUser == null) { return BadRequest("Cannot find user"); }
+
+            var post = currentUser.Posts.FirstOrDefault(p => p.Id == postId);
+            if (post == null) { return BadRequest("Cannot find post"); }
+
+            if (currentUser.Posts.Contains(post)) {  return BadRequest("Post already added"); }
+
+            currentUser.Posts.Add(post);
+
+            Data.Users.SaveChanges();
+
+            return Ok(
+                new
+                {
+                    message = "Post shared successfully."
+                }
+            );
         }
 
         [HttpGet]
@@ -90,72 +193,6 @@
                     numItems,
                     numPages,
                     posts = postsToReturn
-                }
-            );
-        }
-
-        [HttpGet]
-        [Route("{id:int}")]
-        public IHttpActionResult GetAdById(int id)
-        {
-            var ad = this.Data.Posts.All()
-                .FirstOrDefault(d => d.Id == id);
-            if (ad == null)
-            {
-                return this.BadRequest("Advertisement #" + id + " not found!");
-            }
-
-            // Validate the current user ownership over the ad
-            var currentUserId = User.Identity.GetUserId();
-            if (ad.OwnerId != currentUserId)
-            {
-                return this.Unauthorized();
-            }
-
-            return this.Ok(new
-            {
-                id = ad.Id,
-                text = ad.Text,
-                date = ad.Date.ToString("o"),
-                imageDataUrl = ad.ImageDataURL,
-            });
-        }
-
-        [HttpPut]
-        [Route("{id:int}")]
-        public IHttpActionResult UpdatePost(int id, [FromBody]UserUpdatePostBindingModel model)
-        {
-            // Validate the input parameters
-            if (!ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
-
-            var ad = Data.Posts.All().FirstOrDefault(d => d.Id == id);
-            if (ad == null)
-            {
-                return this.BadRequest("Advertisement #" + id + " not found!");
-            }
-
-            // Validate the current user ownership over the ad
-            var currentUserId = User.Identity.GetUserId();
-            if (ad.OwnerId != currentUserId)
-            {
-                return this.Unauthorized();
-            }
-
-            ad.Text = model.Text;
-            if (model.ChangeImage)
-            {
-                ad.ImageDataURL = model.ImageDataURL;
-            }
-
-            this.Data.Posts.SaveChanges();
-
-            return this.Ok(
-                new
-                {
-                    message = "Advertisement #" + id + " edited successfully."
                 }
             );
         }

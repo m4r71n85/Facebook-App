@@ -22,16 +22,11 @@ app.controller('homeController',
                 function (data) {
                     $scope.posts = data;
                 });
-           
-            postsService.getUserFriends().then(
-                function (data) {
-                    $scope.friends = data;
-                });
-
-            $scope.isLoggedIn = authSessionHelper.isLoggedIn();
-            $scope.$on('authState', function () {
-                $scope.isLoggedIn = authSessionHelper.isLoggedIn();
-            });
         }
+
+        $scope.isLoggedIn = authSessionHelper.isLoggedIn();
+        $scope.$on('authState', function () {
+            $scope.isLoggedIn = authSessionHelper.isLoggedIn();
+        });
 
     }]);
